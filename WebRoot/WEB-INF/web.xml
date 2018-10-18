@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name></display-name>
+  <!-- 拦截器 -->
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>com.filter.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- servlet配置 -->
+  <servlet>
+    <servlet-name>DengluServlet</servlet-name>
+    <servlet-class>com.servlet.DengluServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ZhuceServlet</servlet-name>
+    <servlet-class>com.servlet.ZhuceServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Searchall</servlet-name>
+    <servlet-class>com.servlet.Searchall</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteServlet</servlet-name>
+    <servlet-class>com.servlet.DeleteServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateServlet</servlet-name>
+    <servlet-class>com.servlet.UpdateServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>WechatCoreServlet</servlet-name>
+    <servlet-class>com.servlet.WechatCoreServlet</servlet-class>
+  </servlet>
+<servlet>
+    <servlet-name>UploadFileServlet</servlet-name>
+    <servlet-class>com.servlet.UploadFileServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DownloadFileServlet</servlet-name>
+    <servlet-class>com.servlet.DownloadFileServlet</servlet-class>
+  </servlet>
+  
+  <!-- 
+  <servlet>
+        <servlet-name>initServlet</servlet-name>
+        <servlet-class>
+            com.listener.InitListener
+        </servlet-class>
+         配置获取access_token所需参数appid和appsecret 
+        <init-param>
+            <param-name>appid</param-name>
+            <param-value>appid</param-value>
+        </init-param>
+        <init-param>
+            <param-name>appsecret</param-name>
+            <param-value>appsecret</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+  
+  -->
+  
+  <!-- servlet 映射 -->
+  <servlet-mapping>
+    <servlet-name>DengluServlet</servlet-name>
+    <url-pattern>/DengluServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ZhuceServlet</servlet-name>
+    <url-pattern>/ZhuceServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Searchall</servlet-name>
+    <url-pattern>/Searchall</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteServlet</servlet-name>
+    <url-pattern>/DeleteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateServlet</servlet-name>
+    <url-pattern>/UpdateServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 微信开发者模式验证servlet -->
+    <servlet-mapping>
+    <servlet-name>WechatCoreServlet</servlet-name>
+    <url-pattern>/WechatCoreServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 微信关注事件 SubscribeServlet -->
+  <servlet-mapping>
+    <servlet-name>UploadFileServlet</servlet-name>
+    <url-pattern>/UploadFileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DownloadFileServlet</servlet-name>
+    <url-pattern>/DownloadFileServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- 启用applicationContext.xml文件 -->
+  <context-param>
+  <param-name>contextConfigLocation</param-name>
+  <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  
+  <!--<listener>
+  <listener-class>org.springFramework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  -->
+  
+  <!-- 使用监听器定时每隔7000秒获取一次 accessToken，及时更新并存储在数据库中-->
+  <listener>
+  <listener-class>com.listener.InitListener</listener-class>
+  </listener> 
+  
+  
+  
+  
+  
+ <welcome-file-list>
+    <welcome-file>denglu.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
